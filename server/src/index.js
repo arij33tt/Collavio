@@ -15,31 +15,38 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5000',
   'http://127.0.0.1:3000',
-  'https://your-collavio.vercel.app', // Replace with your actual Vercel URL
-  'https://collavio-frontend.vercel.app' // Replace with your actual Vercel URL
+  'https://collavio.vercel.app', //  actual Vercel URL
+  'https://collavio-frontend.vercel.app' // Alternative Vercel URL
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
+    console.log('CORS request from origin:', origin);
+    
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
     // In development, allow all localhost origins
     if (process.env.NODE_ENV === 'development' || 
         (origin && (origin.includes('localhost') || origin.includes('127.0.0.1')))) {
+      console.log('Allowing development origin:', origin);
       return callback(null, true);
     }
     
     if (allowedOrigins.indexOf(origin) !== -1) {
+      console.log('Allowing whitelisted origin:', origin);
       return callback(null, true);
     } else {
       console.log('CORS blocked origin:', origin);
+      console.log('Allowed origins:', allowedOrigins);
       return callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+  preflightContinue: false,
+  optionsSuccessStatus: 200
 }));
 
 // Middleware
