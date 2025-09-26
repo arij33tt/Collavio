@@ -7,7 +7,7 @@ export default function Home() {
     <div className="home-hero">
       <div className="home-hero-inner">
         <h1 className="home-title">Video Collaborator</h1>
-        <p className="home-subtitle">Review, version, and publish your videos seamlessly to your YouTube Clone channel.</p>
+        <p className="home-subtitle">Review, version, and publish your videos seamlessly to your YouTube  channel.</p>
         <div className="home-cta">
           <Link to="/login" className="btn btn-primary">Get Started</Link>
           <Link to="/signup" className="btn btn-secondary">Create an account</Link>
