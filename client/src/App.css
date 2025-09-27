@@ -46,8 +46,8 @@ html, body {
 
 .app-content {
   flex: 1;
-  padding-top: 80px; /* Space for fixed navigation */
-  padding-bottom: 2rem;
+  padding-top: 0; /* Space for fixed navigation 65 */
+  padding-bottom: 0; /* Space for footer if needed 2rem */
 }
 
 /* Navigation */
@@ -841,7 +841,7 @@ button:disabled {
   }
   
   .app-content {
-    padding-top: 70px;
+    padding-top: 0; /* 64 ps */
   }
   
   /* Dashboard */
@@ -964,8 +964,8 @@ button:disabled {
   }
   
   .app-content {
-    padding-top: 65px;
-    padding-bottom: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
   }
   
   /* Dashboard */
