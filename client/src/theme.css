@@ -612,7 +612,7 @@ label {
 .members-panel.open-left { right: auto; left: 0; }
 .members-panel:focus, .members-panel *:focus { outline: none; }
 .workspace-actions { position: relative; z-index: 100; }
-.comments-toolbar { z-index: 1000; }
+.comments-toolbar { z-index: 500; }
 .workspace-actions { position: relative; }
 .member-list ul { list-style: none; padding: 0; margin: 8px 0 0; }
 .member-item { display: flex; align-items: center; justify-content: space-between; padding: 8px; border-radius: 10px; }
