@@ -427,21 +427,8 @@ button:disabled {
 .video-player.compact { display: flex; justify-content: center; margin-bottom: 12px; }
 
 /* Right-side comments toolbar */
-.comments-toolbar { 
-  position: sticky; 
-  top: 80px; 
-  height: calc(100vh - 120px); 
-  overflow-y: auto; 
-  background: rgba(255,255,255,0.04); 
-  border: 1px solid rgba(255,255,255,0.12); 
-  border-radius: 12px; 
-  padding: 12px; 
-  overflow-x: hidden; 
-  z-index: 500;
-  max-width: 340px;
-  contain: layout style;
-}
-.comments-toolbar-inner { display: flex; flex-direction: column; gap: 8px; max-width: 100%; }
+.comments-toolbar { position: sticky; top: 80px; height: calc(100vh - 120px); overflow-y: auto; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 12px; }
+.comments-toolbar-inner { display: flex; flex-direction: column; gap: 8px; }
 .toolbar-title { margin: 4px 4px 8px; color: #e5e7eb; }
 .comments-empty { color: #a1a1aa; padding: 1rem; text-align: center; }
 
@@ -463,8 +450,6 @@ button:disabled {
   border-radius: 10px;
   box-shadow: none;
   color: #e5e7eb;
-  max-width: 100%;
-  overflow: hidden;
 }
 
 .comment-form {
@@ -507,8 +492,6 @@ button:disabled {
 
 .comments-list {
   margin-top: 1rem;
-  max-width: 100%;
-  overflow: hidden;
 }
 
 .comment-item {
@@ -516,9 +499,6 @@ button:disabled {
   border-radius: 4px;
   padding: 1rem;
   margin-bottom: 1rem;
-  max-width: 100%;
-  overflow: hidden;
-  word-wrap: break-word;
 }
 
 .comment-header {
@@ -552,61 +532,11 @@ button:disabled {
 
 .comment-content {
   margin-bottom: 0.5rem;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  max-width: 100%;
 }
 
 .comment-date {
   font-size: 0.8rem;
   color: #666;
-}
-
-/* Large screen specific fixes for comments overflow */
-@media (min-width: 1200px) {
-  .comments-toolbar {
-    max-width: 340px;
-    overflow-x: hidden;
-    z-index: 500;
-    contain: layout style;
-  }
-  
-  .comments-container {
-    max-width: 100%;
-    overflow-x: hidden;
-    contain: layout;
-  }
-  
-  .comments-list {
-    max-width: 100%;
-    overflow-x: hidden;
-    contain: layout;
-  }
-  
-  .comment-item {
-    max-width: 100%;
-    overflow-x: hidden;
-    box-sizing: border-box;
-    contain: layout;
-  }
-  
-  .comment-content {
-    max-width: 100%;
-    overflow-x: hidden;
-    word-break: break-word;
-    contain: layout;
-  }
-  
-  /* Ensure comments toolbar doesn't interfere with members panel */
-  .comments-toolbar * {
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-  
-  /* Ensure members panel always appears above comments */
-  .members-panel {
-    z-index: 5000 !important;
-  }
 }
 
 .no-comments {
