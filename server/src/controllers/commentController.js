@@ -92,7 +92,18 @@ const getVideoComments = async (req, res) => {
         .get();
 
       const comments = [];
-      commentsQuery.forEach((doc) => comments.push({ id: doc.id, ...doc.data() }));
+      commentsQuery.forEach((doc) => {
+        const data = doc.data();
+        if (data && doc.id) {
+          comments.push({ 
+            id: doc.id, 
+            ...data,
+            timestamp: data.timestamp || 0,
+            content: data.content || '',
+            createdAt: data.createdAt || null
+          });
+        }
+      });
       return res.status(200).json(comments);
     } catch (e) {
       // Fallback if composite index is missing
@@ -102,7 +113,18 @@ const getVideoComments = async (req, res) => {
           .where('videoId', '==', videoId)
           .get();
         const comments = [];
-        snap.forEach((doc) => comments.push({ id: doc.id, ...doc.data() }));
+        snap.forEach((doc) => {
+          const data = doc.data();
+          if (data && doc.id) {
+            comments.push({ 
+              id: doc.id, 
+              ...data,
+              timestamp: data.timestamp || 0,
+              content: data.content || '',
+              createdAt: data.createdAt || null
+            });
+          }
+        });
         comments.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
         return res.status(200).json(comments);
       }

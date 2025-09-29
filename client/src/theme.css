@@ -584,7 +584,9 @@ label {
 
 /* Comments */
 .comments-container { background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
-.comment-item { background: rgba(255,255,255,0.05); border: 1px solid var(--border); }
+.comments-list-container { background: rgba(255,255,255,0.02); border: 1px solid var(--border); max-height: 400px; overflow-y: auto; }
+.comment-item { background: rgba(255,255,255,0.04); border: 1px solid var(--border); margin-bottom: 8px; }
+.comment-item:hover { background: rgba(255,255,255,0.06); }
 .timestamp-btn { background: transparent; color: var(--primary-2); border: 1px solid var(--border); border-radius: 8px; padding: 4px 8px; }
 
 /* Members */
@@ -614,9 +616,10 @@ label {
 .workspace-actions { position: relative; z-index: 100; }
 .comments-toolbar { z-index: 1000; }
 .workspace-actions { position: relative; }
-.member-list ul { list-style: none; padding: 0; margin: 8px 0 0; }
-.member-item { display: flex; align-items: center; justify-content: space-between; padding: 8px; border-radius: 10px; }
+.member-list ul { list-style: none; padding: 0; margin: 8px 0 0; max-height: 300px; overflow-y: auto; }
+.member-item { display: flex; align-items: center; justify-content: space-between; padding: 8px; border-radius: 10px; margin-bottom: 4px; }
 .member-item:hover { background: rgba(255,255,255,0.04); }
+.member-info { display: flex; align-items: center; flex: 1; min-width: 0; }
 .member-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); }
 .member-avatar.placeholder { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px dashed var(--border); }
 .member-text { margin-left: 10px; }
