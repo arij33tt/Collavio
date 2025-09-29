@@ -606,13 +606,18 @@ label {
   box-shadow: 0 22px 60px rgba(0,0,0,0.6);
   max-height: min(70vh, 520px);
   overflow: auto;
-  z-index: 3000;
+  z-index: 5000;
   min-width: 340px;
 }
 .members-panel.open-left { right: auto; left: 0; }
 .members-panel:focus, .members-panel *:focus { outline: none; }
 .workspace-actions { position: relative; z-index: 100; }
-.comments-toolbar { z-index: 500; }
+.comments-toolbar { 
+  z-index: 500; 
+  contain: layout style;
+  overflow: hidden;
+  max-width: 340px;
+}
 .workspace-actions { position: relative; }
 .member-list ul { list-style: none; padding: 0; margin: 8px 0 0; }
 .member-item { display: flex; align-items: center; justify-content: space-between; padding: 8px; border-radius: 10px; }
