@@ -490,17 +490,8 @@ button:disabled {
   width: auto;
 }
 
-.comments-list-container {
-  margin-top: 1rem;
-  max-height: 400px;
-  overflow-y: auto;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  background-color: #f9fafb;
-}
-
 .comments-list {
-  padding: 0.5rem;
+  margin-top: 1rem;
 }
 
 .comment-item {

@@ -84,28 +84,17 @@ const MemberList = ({ workspaceId, canManage = false, onChanged }) => {
         <div>No members yet</div>
       ) : (
         <ul>
-          {members.filter(m => m && m.uid).map((m, index) => (
-            <li key={`${m.uid}-${index}`} className="member-item">
+          {members.map(m => (
+            <li key={m.uid} className="member-item">
               <div className="member-info">
-                {m.photoURL ? (
-                  <img 
-                    src={m.photoURL} 
-                    alt={m.displayName || m.email || 'User'} 
-                    className="member-avatar"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'block';
-                    }}
-                  />
-                ) : null}
-                <div className="member-avatar placeholder" style={{ display: m.photoURL ? 'none' : 'block' }} />
+                {m.photoURL ? <img src={m.photoURL} alt={m.displayName || m.email} className="member-avatar" /> : <div className="member-avatar placeholder" />}
                 <div className="member-text">
                   <div className="member-name">
-                    {m.displayName || m.email || m.uid || 'Unknown User'}
+                    {m.displayName || m.email || m.uid}
                     {m.isOwner && <span className="owner-badge">Owner</span>}
                     {!m.isOwner && m.canPublish && <span className="owner-badge" style={{ color: '#34d399' }}>Publisher</span>}
                   </div>
-                  <div className="member-email">{m.email || ''}</div>
+                  <div className="member-email">{m.email}</div>
                 </div>
               </div>
               {canManage && !m.isOwner && (

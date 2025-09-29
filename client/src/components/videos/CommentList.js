@@ -121,52 +121,44 @@ const CommentList = ({ videoId, currentTime, onSeek, workspaceId }) => {
             placeholder="Add a comment at current timestamp..."
             className="comment-input"
           />
-          <span className="current-timestamp">{formatTimestamp(currentTime || 0)}</span>
+          <span className="current-timestamp">{formatTimestamp(currentTime)}</span>
         </div>
         <button type="submit" className="comment-submit-btn">Add</button>
       </form>
       
       {error && <div className="comments-error">{error}</div>}
       
-      <div className="comments-list-container">
-        <div className="comments-list">
-          {comments.length === 0 ? (
-            <p className="no-comments">No comments yet</p>
-          ) : (
-            comments
-              .filter(comment => comment && comment.id)
-              .map((comment, index) => (
-                <div key={`${comment.id}-${index}`} className="comment-item">
-                  <div className="comment-header">
-                    <div className="comment-author">
-                      {comment.author?.photoURL && (
-                        <img 
-                          src={comment.author.photoURL} 
-                          alt={comment.author.displayName || 'User'} 
-                          className="author-avatar"
-                          onError={(e) => {
-                            e.target.style.display = 'none';
-                          }}
-                        />
-                      )}
-                      <span className="author-name">{comment.author?.displayName || comment.author?.email || 'Unknown User'}</span>
-                    </div>
-                    <button 
-                      className="timestamp-btn"
-                      onClick={() => handleTimestampClick(comment.timestamp)}
-                      title={`Jump to ${formatTimestamp(comment.timestamp || 0)}`}
-                    >
-                      {formatTimestamp(comment.timestamp || 0)}
-                    </button>
-                  </div>
-                  <div className="comment-content">{comment.content || ''}</div>
-                  <div className="comment-date">
-                    {comment.createdAt ? formatDateTime(comment.createdAt) : 'Unknown date'}
-                  </div>
+      <div className="comments-list">
+        {comments.length === 0 ? (
+          <p className="no-comments">No comments yet</p>
+        ) : (
+          comments.map(comment => (
+            <div key={comment.id} className="comment-item">
+              <div className="comment-header">
+                <div className="comment-author">
+                  {comment.author?.photoURL && (
+                    <img 
+                      src={comment.author.photoURL} 
+                      alt={comment.author.displayName} 
+                      className="author-avatar"
+                    />
+                  )}
+                  <span className="author-name">{comment.author?.displayName || 'Unknown User'}</span>
                 </div>
-              ))
-          )}
-        </div>
+                <button 
+                  className="timestamp-btn"
+                  onClick={() => handleTimestampClick(comment.timestamp)}
+                >
+                  {formatTimestamp(comment.timestamp)}
+                </button>
+              </div>
+              <div className="comment-content">{comment.content}</div>
+              <div className="comment-date">
+                {formatDateTime(comment.createdAt)}
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

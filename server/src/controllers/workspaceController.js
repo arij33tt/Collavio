@@ -218,45 +218,19 @@ exports.listMembers = async (req, res) => {
     // Fetch user docs individually to avoid 'in' limitation and keep it simple
     const users = [];
     await Promise.all(
-      uids.filter(uid => uid && typeof uid === 'string').map(async (uid) => {
-        try {
-          const uRef = db.collection('users').doc(uid);
-          const uDoc = await uRef.get();
-          if (uDoc.exists) {
-            const u = uDoc.data();
-            users.push({
-              uid,
-              email: u.email || '',
-              displayName: u.displayName || u.email || '',
-              photoURL: u.photoURL || '',
-              role: u.role || 'creator',
-              isOwner: uid === ws.owner,
-              canPublish: Array.isArray(ws.publishers) ? ws.publishers.includes(uid) : false,
-            });
-          } else {
-            // Handle case where user document doesn't exist
-            console.warn(`User document not found for UID: ${uid}`);
-            users.push({
-              uid,
-              email: '',
-              displayName: 'Unknown User',
-              photoURL: '',
-              role: 'creator',
-              isOwner: uid === ws.owner,
-              canPublish: Array.isArray(ws.publishers) ? ws.publishers.includes(uid) : false,
-            });
-          }
-        } catch (error) {
-          console.error(`Error fetching user ${uid}:`, error);
-          // Add placeholder user to prevent indexing issues
+      uids.map(async (uid) => {
+        const uRef = db.collection('users').doc(uid);
+        const uDoc = await uRef.get();
+        if (uDoc.exists) {
+          const u = uDoc.data();
           users.push({
             uid,
-            email: '',
-            displayName: 'Error Loading User',
-            photoURL: '',
-            role: 'creator',
+            email: u.email || '',
+            displayName: u.displayName || '',
+            photoURL: u.photoURL || '',
+            role: u.role || 'creator',
             isOwner: uid === ws.owner,
-            canPublish: false,
+            canPublish: Array.isArray(ws.publishers) ? ws.publishers.includes(uid) : false,
           });
         }
       })
