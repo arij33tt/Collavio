@@ -265,7 +265,7 @@ const WorkspaceDetail = () => {
               ) : ytCloneStatus.isOwner ? (
                 <>
                   <span className="status-icon">🔗</span>
-                  Connect YouTube Clone
+                  Connect YouTube 
                 </>
               ) : (
                 <>
@@ -345,7 +345,7 @@ const WorkspaceDetail = () => {
       <div id="yt-clone-modal" style={{ display: 'none', position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)' }} onClick={(e)=>{ if(e.target.id==='yt-clone-modal'){ e.currentTarget.style.display='none'; } }}>
         <div style={{ background: '#111', padding: 16, maxWidth: 520, margin: '10% auto', borderRadius: 8 }}>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
-            <h3>Connect YouTube Clone</h3>
+            <h3>Connect YouTube </h3>
             <button onClick={() => { const m=document.getElementById('yt-clone-modal'); if(m) m.style.display='none'; }}>X</button>
           </div>
           <YouTubeCloneConnect workspaceId={workspaceId} onConnected={async () => { 

@@ -100,7 +100,7 @@ export default function YouTubeCloneConnect({ workspaceId, onConnected }) {
       };
 
       if (!payload.token && !(payload.channelId && payload.channelLinkSecret)) {
-        setStatus('Provide YT-Clone login or Channel ID + Secret');
+        setStatus('Provide YT login or Channel ID + Secret');
         return;
       }
 
